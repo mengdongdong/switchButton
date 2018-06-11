@@ -22,6 +22,15 @@ public class SwitchsButton extends LinearLayout {
     private Button curBtn;
     private ArrayList<TextView> btnList;
     private ArrayList<String> list;
+    private switchListener listener;
+
+    public void setListener(switchListener listener) {
+        this.listener = listener;
+    }
+
+    public switchListener getListener() {
+        return listener;
+    }
 
     public SwitchsButton(Context context) {
         this(context, null);
@@ -32,7 +41,6 @@ public class SwitchsButton extends LinearLayout {
 
         super(context, attrs);
         mcontext = context;
-
         view = LayoutInflater.from(context).inflate(R.layout.switchs_button_layout, this, true);
         bottomLayout = view.findViewById(R.id.bottomLayout);
         curBtn = view.findViewById(R.id.curBtn);
@@ -52,7 +60,7 @@ public class SwitchsButton extends LinearLayout {
             TextView button = new TextView(mcontext);
             button.setText(titleArr.get(i));
             button.setWidth(Integer.valueOf(dp2px(mcontext, 100)));
-            button.setHeight(Integer.valueOf(dp2px(mcontext,36)));
+            button.setHeight(Integer.valueOf(dp2px(mcontext, 36)));
             button.setTextColor(Color.parseColor("#ffffff"));
             button.setGravity(Gravity.CENTER);
 
@@ -67,6 +75,7 @@ public class SwitchsButton extends LinearLayout {
                     Integer m = btnList.indexOf(v);
 
                     setIndex(m);
+                    listener.itemClick(m);
 
                 }
             });
@@ -85,6 +94,11 @@ public class SwitchsButton extends LinearLayout {
         curBtn.setLayoutParams(params);
 
 
+    }
+
+
+    public interface switchListener {
+        void itemClick(Integer m);
     }
 
 
