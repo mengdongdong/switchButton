@@ -14,14 +14,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        SwitchsButton switchsBtn = findViewById(R.id.swiftBtn);
-//
-//        ArrayList<String> list = new ArrayList<>();
-//        list.add("正在进行");
-//        list.add("已经关闭");
-//        list.add("剩下一个");
-//        switchsBtn.showList(list);
+        SwitchsButton switchsBtn = findViewById(R.id.swiftBtn);
 
+        ArrayList<String> list = new ArrayList<>();
+        list.add("正在进行");
+        list.add("已经关闭");
+//        list.add("剩下一个");
+        switchsBtn.showList(list);
+        switchsBtn.setIndex(0);
     }
 
 }

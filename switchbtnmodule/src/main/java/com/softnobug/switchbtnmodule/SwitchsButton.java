@@ -2,12 +2,15 @@ package com.softnobug.switchbtnmodule;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.print.PrintAttributes;
 import android.util.AttributeSet;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -17,7 +20,7 @@ public class SwitchsButton extends LinearLayout {
     private Context mcontext;
     private LinearLayout bottomLayout;
     private Button curBtn;
-    private ArrayList<Button> btnList;
+    private ArrayList<TextView> btnList;
     private ArrayList<String> list;
 
     public SwitchsButton(Context context) {
@@ -46,10 +49,13 @@ public class SwitchsButton extends LinearLayout {
 
         for (int i = 0; i < titleArr.size(); i++) {
 
-            Button button = new Button(mcontext);
+            TextView button = new TextView(mcontext);
             button.setText(titleArr.get(i));
-            button.setWidth(Integer.valueOf(dp2px(mcontext, 90)));
+            button.setWidth(Integer.valueOf(dp2px(mcontext, 100)));
+            button.setHeight(Integer.valueOf(dp2px(mcontext,36)));
             button.setTextColor(Color.parseColor("#ffffff"));
+            button.setGravity(Gravity.CENTER);
+
             button.setBackgroundColor(Color.parseColor("#00000000"));
             bottomLayout.addView(button);
             btnList.add(button);
@@ -85,6 +91,11 @@ public class SwitchsButton extends LinearLayout {
     public static int dp2px(Context context, float dipValue) {
         final float scale = context.getResources().getDisplayMetrics().density;
         return (int) (dipValue * scale + 0.5f);
+    }
+
+    public static int sp2px(Context context, float spValue) {
+        final float fontScale = context.getResources().getDisplayMetrics().scaledDensity;
+        return (int) (spValue * fontScale + 0.5f);
     }
 
 }
